@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<style>
+	.demo{
+		width: 200px;
+		height: 100px;
+		background-color: #ccc;
+		position:absolute;
+		top:0;
+		opacity: 1;
+	}
+</style>
+<body>
+    <a href="http://www.baidu.com">baidu</a>
+	<div class="demo" id="demo">
+		abc
+	</div>
+	<script>
+		var objDiv = document.getElementById("demo");
+		objDiv.addEventListener("touchstart",function(ev){
+			console.log("click handle");
+			// objDiv.style.display='none';
+			ev.preventDefault();
+			objDiv.innerHTML = ev.targetTouches.length;
+			objDiv.addEventListener("touchmove",function(ev){
+				objDiv.innerHTML = ev.targetTouches.length;
+			})
+			objDiv.addEventListener("touchend",function(ev){
+				console.log(ev.changedTouches.length);
+			})
+
+		})
+		//300ms的延迟 移动端也会认pc的事件
+		//点透  阻止默认行为
+		//touches是当前屏幕上所有触摸点的列表;
+//targetTouches是当前对象上所有触摸点的列表;
+//changedTouches是涉及当前事件的触摸点的列表。
+	</script>
+</body>
+</html>
